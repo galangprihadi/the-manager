@@ -206,20 +206,21 @@ body {
     margin-top: 1vw;
     text-align: center;
     font-size: var(--font-value);
+    font-weight: 500;
 }
 
 #game-help .icon-panel .icon {
     margin-top: 1vw;
     text-align: right;
     font-size: var(--font-icon);
-    font-weight: normal;
+    font-weight: 500;
 }
 
 #game-help .icon-panel .value {
     margin-top: 1vw;
     font-size: var(--font-value);
     line-height: 1;
-    font-weight: normal;
+    font-weight: 500;
 }
 
 #game-help.close {
@@ -284,6 +285,7 @@ body {
         margin-left: auto;
         margin-right: 1vw;
         font-size: var(--font-button);
+        font-weight: bold;
         background-color: var(--color-red);
         color: var(--color-smokeWhite);
         box-shadow: inset -2px -2px 3px rgba(0, 0, 0, 0.3), 2px 2px 3px rgba(0, 0, 0, 0.3);
@@ -313,14 +315,14 @@ body {
     margin-right: 4vw;
     font-size: var(--font-footer);
     color: var(--color-smokeWhite);
-    font-weight: normal;
+    font-weight: 500;
 }
 
 #footer-panel .icon span {
     margin-top: 0.5vw;
     font-size: var(--font-footer);
     margin-left: 2vw;
-    font-weight: normal;
+    font-weight: 500;
 }
 
 #footer-panel .icon span.red {
@@ -397,6 +399,7 @@ body {
     margin-left: auto;
     margin-right: 1vw;
     font-size: var(--font-button);
+    font-weight: 500;
     background-color: var(--color-red);
     color: var(--color-smokeWhite);
     box-shadow: inset -2px -2px 3px rgba(0, 0, 0, 0.3), 2px 2px 3px rgba(0, 0, 0, 0.3);
@@ -461,7 +464,7 @@ body {
     width: 100%;
     margin-top: 0.5vw;
     font-size: var(--font-value);
-    font-weight: normal;
+    font-weight: 500;
 }
 
 .project .red {
@@ -563,7 +566,7 @@ body {
     width: 100%;
     margin-top: 0.5vw;
     font-size: var(--font-value);
-    font-weight: normal;
+    font-weight: 500;
 }
 
 .team .red {

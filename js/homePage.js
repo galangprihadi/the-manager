@@ -65,6 +65,10 @@ class HomePage {
 
         this.btnPlay = document.querySelector("#btnPlay");
 
+        this.btnPlay.addEventListener("click", () => {
+            this.setGameTransition('close', 'pages/theManager.html');
+        });
+
         setTimeout(() => {
             this.setGameTransition("open");
         }, 100);
