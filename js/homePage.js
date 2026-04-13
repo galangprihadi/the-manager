@@ -44,7 +44,7 @@ class HomePage {
         }
 
         else if (status.toLowerCase() == "close") {
-            this.sounds.pop.play();
+            
             this.sounds.transition.play();
 
             const handler = () => {
@@ -72,7 +72,8 @@ class HomePage {
         this.btnPlay = document.querySelector("#btnPlay");
 
         this.btnPlay.addEventListener("click", () => {
-            this.setGameTransition('close', 'pages/theManager.html');
+            this.sounds.pop.play();
+            // this.setGameTransition('close', 'pages/theManager.html');
         });
 
         setTimeout(() => {
