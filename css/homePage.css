@@ -55,7 +55,7 @@ html {
     -moz-user-select: none;     /* Firefox */
     -ms-user-select: none;      /* IE10+ */
     user-select: none;          /* Standar */
-    overscroll-behavior-y: none;
+    /* overscroll-behavior-y: none; */
     height: 100%;
 }
 
