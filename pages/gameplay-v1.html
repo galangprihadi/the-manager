@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gameplay Test</title>
+
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        button { margin: 5px; }
+        h3 {margin-bottom: 15px;}
+        #game-info { margin-left: 30px; margin-bottom: 15px;}
+        .task { margin-left: 30px; margin-bottom: 15px; }
+        .team { margin-left: 30px; margin-bottom: 15px; }
+        .log { font-size: 0.9em; color: #444; }
+    </style>
+</head>
+<body>
+    <h1>Project Management Game</h1>
+
+    <h3>Game Info</h3>
+    <div id="game-info">Game Info</div>
+    <h3>Tasks</h3>
+    <div id="tasks">Tasks</div>
+    <h3>Team</h3>
+    <div id="teams">Team</div>
+
+    <script>
+        const gameInfo = document.getElementById("game-info");
+        const taskInfo = document.getElementById("tasks");
+        const teamInfo = document.getElementById("teams");
+
+        function rand(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        /* ==========================
+           PCG ENGINE
+        ========================== */
+
+        function generateProject(duration = "normal") {
+            const durationMap = {
+                short: { 
+                    budget: 2000,
+                    maxTurn: 10,
+                    numOfTask: 6,
+                    value: [600, 1000],
+                    maxEffort: [10, 30],
+                    risk: [15, 30] 
+                },
+
+                normal: { 
+                    budget: 2000,
+                    maxTurn: 20,
+                    numOfTask: 6,
+                    value: [600, 1000],
+                    maxEffort: [50, 80],
+                    risk: [15, 30] 
+                },
+
+                long: { 
+                    budget: 2000,
+                    maxTurn: 30,
+                    numOfTask: 9,
+                    value: [600, 1000],
+                    maxEffort: [10, 30],
+                    risk: [15, 30] 
+                },
+            }
+
+            const teamMap = {
+                numOfTeam: 5,
+                speed: [10, 15],
+                salary: [30, 40],
+                boost: [2, 5],
+            }
+
+            const config = durationMap[duration];
+            const tasks = [];
+            const teams = [];
+
+            for (let i=0; i < config.numOfTask; i++) {
+                tasks.push({
+                    id: i + 1,
+                    value: rand(config.value[0], config.value[1]),
+                    effort: 0,
+                    maxEffort: rand(config.maxEffort[0], config.maxEffort[1]),
+                    risk: rand(config.risk[0], config.risk[1])
+                });
+            }
+
+            for (let i=0; i < teamMap.numOfTeam; i++) {
+                teams.push({
+                    id: i + 1,
+                    speed: rand(teamMap.speed[0], teamMap.speed[1]),
+                    salary: rand(teamMap.salary[0], teamMap.salary[1]),
+                    boost: rand(teamMap.boost[0], teamMap.boost[1]),
+                })
+            }
+
+            return {
+                turn: 1,
+                budget: config.budget,
+                profit: 0,
+                maxTurn: config.maxTurn,
+                tasks,
+                teams
+            }
+        }
+
+
+        /* ==========================
+           GAME STATE
+        ========================== */
+
+        let game = generateProject("normal");
+
+
+        /* ==========================
+           RENDERING
+        ========================== */
+
+        function render() {
+            gameInfo.innerHTML = `
+                <strong>Turn:</strong> ${game.turn} / ${game.maxTurn} |
+                <strong>Budget:</strong> $${game.budget} |
+                <strong>Profit:</strong> ${game.profit}
+            `;
+
+            taskInfo.innerHTML = game.tasks.map(t => `
+                <div class="task">
+                    <strong>Task ${t.id} </strong> [
+                    <strong>Value:</strong> $${t.value} |
+                    <strong>Effort:</strong> ${t.effort} / ${t.maxEffort} |
+                    <strong>Risk:</strong> ${t.risk}% ]
+                </div>
+            `).join("");
+
+            teamInfo.innerHTML = game.teams.map(t => `
+                <div class="team">
+                    <strong>Person ${t.id} </strong> [
+                    <strong>Speed:</strong> ${t.speed} |
+                    <strong>Salary:</strong> ${t.salary} |
+                    <strong>Boost:</strong> ${t.boost} ]
+                </div>
+            `).join("");
+
+        }
+
+        render();
+
+        /* ==========================
+           GAME ACTION
+        ========================== */
+
+        
+
+        
+
+
+        
+
+
+    </script>
+    
+</body>
+</html>

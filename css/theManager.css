@@ -1,0 +1,545 @@
+:root {
+    --color-background: #eeeeee;
+    --color-footerPanel: #2C3E50;
+    --color-gamePanel: #dbdbdb;
+    --color-infoPanel: #dbdbdb;
+
+    --color-footer: #ECF0F1;
+    --color-project: #88C070;
+    
+    --color-curtainText: #000000;
+    --color-team: #64B5F6;
+    --color-btnTeam: #FFD54F;
+    --color-finished: #ee4343;
+    --color-active: #e3a447;
+
+    --color-red: #ee4343;
+    --color-deepRed: #c02222;
+    --color-green: #2ECC71;
+    --color-orange: #ffaf38;
+    --color-smokeWhite: #f0f0f0;
+    --color-passive: #8b8b8b;
+
+    --font-var: 2.8vw;
+    --font-project: 3.5vw;
+    --font-team: 3.5vw;
+    --font-label: 3vw;
+    --font-icon: 3.2vw;
+    --font-value: 3.2vw;
+    --font-section: 5vw;
+    --font-button: 3.5vw;
+    --font-skill: 3vw;
+    --font-curtain: 6vw;
+    --font-footer: 3.5vw;
+
+
+
+    /* --color-noteA-Active: #ff6e6150;
+
+    --color-infoPanel: #42424258;
+    --color-topbar: #42424258;
+
+    --color-black: #1a1a1a;
+
+    --color-yellow: #FBC02D;
+    
+    
+    --color-gray: #424242;
+    --color-lightYellow: #b29431;
+    --color-navi: #1A237E;
+    --color-darkGray: #323232;
+    --color-smokeWhite: #f0f0f0;
+    --color-lightBlue: #00c4ff;
+    --color-lightPink: #ff8799;
+
+    --color-1: #ff6e61;
+    --color-2: #6b5b95;
+    --color-3: #87af4b;
+    --color-4: #f7cbca;
+    --color-5: #93a9d2; */
+    
+}
+
+* {
+    box-sizing:border-box;
+    /* font-family: Arial, sans-serif; */
+    font-family: Helvetica, Verdana, sans-serif;
+}
+
+html {
+    -webkit-user-select: none;  /* Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* IE10+ */
+    user-select: none;          /* Standar */
+    overscroll-behavior-y: none;
+}
+
+body {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+    /* overflow: scroll; */
+    background-color: var(--color-background);
+    color: #000000;
+}
+
+
+/* ================================================================================
+    GAME CURTAIN
+================================================================================ */
+
+#curtain {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    opacity: 1;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url(../images/bgPatternBlue.png);
+    background-repeat: repeat;
+    background-position: center center;
+    background-color: var(--color-infoPanel);
+    z-index: 20;
+    animation: none;
+}
+
+#curtain #text-curtain {
+    width: 80%;
+    padding-bottom: 30vw;
+    text-align: center;
+    font-size: var(--font-curtain);
+    font-weight: bold;
+    color: var(--color-curtainText);
+}
+
+#curtain.close {
+    display: flex;
+    opacity: 0;
+    animation: 1s aniTransitionIn ease-in 0.5s forwards;
+}
+
+@keyframes aniTransitionIn {
+    0% {
+        opacity: 0;
+        /* scale: 2; */
+    }
+    50% {
+        opacity: 1;
+        /* scale: 1; */
+    }
+    100% {
+        opacity: 1;
+        /* scale: 1; */
+    }
+}
+
+#curtain.open {
+    animation: 1s aniTransitionOut ease-out forwards;
+}
+
+@keyframes aniTransitionOut {
+    0% {
+        opacity: 1;
+        /* scale: 1; */
+    }
+
+    100% {
+        opacity: 0;
+        /* scale: 2; */
+    }
+}
+
+
+/* ================================================================================
+    GAME HELP
+================================================================================ */
+
+#game-help {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    opacity: 1;
+    padding: 5vw;
+    background-color: var(--color-infoPanel);
+    z-index: 10;
+    animation: none;
+}
+
+#game-help .icon-panel {
+    display: grid;
+    align-items: flex-start;
+    grid-template-columns: 1fr 4fr;
+    width: 80%;
+    column-gap: 3vw;
+}
+
+#game-help .icon-panel .title {
+    grid-column: span 2;
+    width: 100%;
+    margin-top: 5vw;
+    margin-bottom: 1vw;
+    text-align: center;
+    font-size: var(--font-project);
+    font-weight: bold;
+}
+
+#game-help .icon-panel .paragraph {
+    grid-column: span 2;
+    width: 100%;
+    margin-top: 1vw;
+    text-align: center;
+    font-size: var(--font-value);
+}
+
+#game-help .icon-panel .icon {
+    margin-top: 1vw;
+    text-align: right;
+    font-size: var(--font-icon);
+    font-weight: normal;
+}
+
+#game-help .icon-panel .value {
+    margin-top: 1vw;
+    font-size: var(--font-value);
+    line-height: 1;
+    font-weight: normal;
+}
+
+#game-help.close {
+    display: flex;
+    opacity: 0;
+    animation: 0.5s aniTransitionIn ease-in forwards;
+}
+
+#game-help.open {
+    animation: 0.5s aniTransitionOut ease-out forwards;
+}
+
+#game-help .button-wrap {
+    grid-column: span 2;
+    position: absolute;
+    left: 0;
+    bottom: 20vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    column-gap: 5vw;
+}
+
+#game-help button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3vw 5vw;
+    border: none;
+    border-radius: 10vw;
+    font-size: var(--font-button);
+    font-weight: bold;
+    background-color: var(--color-green);
+    box-shadow: inset -2px -2px 3px rgba(0, 0, 0, 0.3), 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+
+/* ================================================================================
+    FOOTER PANEL
+================================================================================ */
+
+#footer-panel {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 2vw 4vw 3vw 4vw;
+    gap: 1.5vw;
+    background-color: var(--color-footerPanel);
+    box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.3), 0px -2px 3px rgba(0, 0, 0, 0.4);
+}
+
+#footer-panel .icon {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: 4vw;
+    font-size: var(--font-footer);
+    color: var(--color-smokeWhite);
+    font-weight: normal;
+}
+
+#footer-panel .icon span {
+    margin-top: 0.5vw;
+    font-size: var(--font-footer);
+    margin-left: 2vw;
+    font-weight: normal;
+}
+
+#footer-panel .icon span.red {
+    color: var(--color-red);
+    font-weight: bold;
+}
+
+#footer-panel button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3vw 5vw;
+    border: none;
+    border-radius: 10vw;
+    margin-left: 5vw;
+    font-size: var(--font-button);
+    font-weight: bold;
+    background-color: var(--color-btnTeam);
+    box-shadow: inset -2px -2px 3px rgba(0, 0, 0, 0.3), 2px 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+#footer-panel button.green {
+    background-color: var(--color-green);
+}
+
+#footer-panel button.passive {
+    background-color: var(--color-passive);
+}
+
+#footer-panel button.left {
+    margin-left: auto;
+}
+
+/* ================================================================================
+    GAME PANEL
+================================================================================ */
+
+#game-panel {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    padding: 0 2vw;
+    padding-top: 3vw;
+    padding-bottom: 13vh;
+    background-color: var(--color-gamePanel);
+}
+
+#game-panel .section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3vw;
+    margin-bottom: 1vw;
+    font-size: var(--font-section);
+    font-weight: bold;
+    width: 100%;
+}
+
+#game-panel .section:first-of-type {
+    margin-top: -3vw;
+}
+
+#game-panel button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8vw;
+    aspect-ratio: 1/1;
+    border: none;
+    border-radius: 10vw;
+    margin-left: auto;
+    margin-right: 1vw;
+    font-size: var(--font-button);
+    background-color: var(--color-red);
+    color: var(--color-smokeWhite);
+    box-shadow: inset -2px -2px 3px rgba(0, 0, 0, 0.3), 2px 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+
+/* ================================================================================
+    PROJECT PANEL
+================================================================================ */
+
+#project-panel {
+    display: grid;
+    align-items: flex-start;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    gap: 2vw;
+}
+
+.project {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    padding: 3vw 4vw;
+    border-radius: 3vw;
+    background-color: var(--color-project);
+    box-shadow: inset -1px -1px 3px rgba(0, 0, 0, 0.3)
+}
+
+.project.active {
+    background-color: var(--color-active);
+}
+
+.project.finished {
+    background-color: var(--color-finished);
+}
+
+.project .title {
+    grid-column: span 2;
+    width: 100%;
+    /* margin-bottom: 1vw; */
+    text-align: center;
+    font-size: var(--font-project);
+    font-weight: bold;
+}
+
+.project .skill {
+    grid-column: span 2;
+    width: 100%;
+    margin-bottom: 1vw;
+    text-align: center;
+    font-size: var(--font-skill);
+    font-weight: bold;
+}
+
+.project .icon {
+    width: 100%;
+    margin-top: 0.5vw;
+    font-size: var(--font-icon);
+    font-weight: bold;
+}
+
+.project .value {
+    width: 100%;
+    margin-top: 0.5vw;
+    font-size: var(--font-value);
+    font-weight: normal;
+}
+
+.project .red {
+    color: var(--color-deepRed);
+    font-weight: bold;
+}
+
+
+/* ================================================================================
+    TEAM PANEL
+================================================================================ */
+
+#team-panel {
+    display: grid;
+    align-items: flex-start;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    gap: 2vw;
+}
+
+.team {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    padding: 3vw;
+    border-radius: 3vw;
+    background-color: var(--color-team);
+    box-shadow: inset -1px -1px 3px rgba(0, 0, 0, 0.3)
+}
+
+.team.active {
+    background-color: var(--color-active);
+}
+
+.team .title {
+    grid-column: span 2;
+    width: 100%;
+    /* margin-bottom: 1vw; */
+    text-align: center;
+    font-size: var(--font-team);
+    font-weight: bold;
+}
+
+.team .skill {
+    grid-column: span 2;
+    width: 100%;
+    margin-bottom: 1vw;
+    text-align: center;
+    font-size: var(--font-skill);
+    font-weight: bold;
+}
+
+.team .label {
+    grid-column: span 2;
+    width: 100%;
+    margin-top: 2vw;
+    text-align: center;
+    font-size: var(--font-team);
+    font-weight: bold;
+}
+
+.team .icon {
+    width: 100%;
+    margin-top: 0.5vw;
+    font-size: var(--font-icon);
+    font-weight: bold;
+}
+
+.team .value {
+    width: 100%;
+    margin-top: 0.5vw;
+    font-size: var(--font-value);
+    font-weight: normal;
+}
+
+.team .red {
+    color: var(--color-deepRed);
+    font-weight: bold;
+}
+
+.team .wrap {
+    grid-column: span 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2vw;
+}
+
+#team-panel .team .wrap button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    height: 7vw;
+    aspect-ratio: 1/1;
+    border: none;
+    border-radius: 50%;
+    font-size: var(--font-button);
+    font-weight: bold;
+    color: black;
+    background-color: var(--color-btnTeam);
+    box-shadow: inset -1px -1px 3px rgba(0, 0, 0, 0.3), 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+#team-panel .team .wrap button.passive {
+    background-color: var(--color-passive);
+}
+
+.team .wrap .pos {
+    display: flex;
+    flex-direction: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 2vw auto;
+    font-size: var(--font-icon);
+    font-weight: bold;
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Manager</title>
+
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <link rel="stylesheet" href="../css/gameHouse.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+    
+</head>
+<body>
+    <div id="curtain"></div>
+
+    <div id="menu-panel">
+        <div class="panel"><i class="fa-solid fa-arrows-spin"></i><span id="eTurn">12/20</span></div>
+        <div class="panel"><i class="fa-solid fa-coins"></i><span id="eBudget">2350</span></div>
+        <div class="panel"><i class="fa-solid fa-money-bill-trend-up"></i><span id="eProfit">1356</span></div>
+        <button id="btnExit"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div id="game-panel">
+        <div class="section">Project Timeline</div>
+        <div id="timeline-panel">
+            <div class="icon"><i class="fa-regular fa-lightbulb"></i></div>
+            <div class="bar"></div>
+            <div class="name">Galang</div>
+            <div class="bar active"></div>
+
+            <div class="icon"><i class="fa-solid fa-palette"></i></div>
+            <div class="bar"></div>
+            <div class="name">Galang</div>
+            <div class="bar active"></div>
+
+            <div class="icon"><i class="fa-solid fa-code"></i></div>
+            <div class="bar"></div>
+            <div class="name">Galang</div>
+            <div class="bar active"></div>
+
+            <div class="icon"><i class="fa-solid fa-gamepad"></i></div>
+            <div class="bar"></div>
+            <div class="name">Galang</div>
+            <div class="bar active"></div>
+
+            <div class="icon"><i class="fa-solid fa-book"></i></div>
+            <div class="bar"></div>
+            <div class="name">Galang</div>
+            <div class="bar active"></div>
+        </div>
+        
+
+        <div class="section">Projects</div>
+        <div id="project-panel"></div>
+
+        <div class="section">Teams</div>
+        <div id="team-panel"></div>
+    </div>
+
+
+    <script src="../js/gameHouse-v1.js"></script>
+
+    <script>
+        const game = new gameHouse({
+
+        });
+
+    </script>
+    
+</body>
+</html>

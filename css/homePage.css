@@ -1,0 +1,190 @@
+:root {
+    --color-background: #dbdbdb;
+    --color-button: #FFD54F;
+    --color-passive: #8b8b8b;
+    --color-footnote: #555555;
+
+    --font-button: 3.5vw;
+    --font-footnote: 2vw;
+
+
+
+
+
+    /* --color-footerPanel: #2C3E50;
+    --color-gamePanel: #dbdbdb;
+    --color-infoPanel: #dbdbdb;
+
+    --color-footer: #ECF0F1;
+    --color-project: #88C070;
+    
+    --color-curtainText: #000000;
+    --color-team: #64B5F6;
+    --color-btnTeam: #FFD54F;
+    --color-finished: #ee4343;
+    --color-active: #e3a447;
+
+    --color-red: #ee4343;
+    --color-deepRed: #c02222;
+    --color-green: #2ECC71;
+    --color-orange: #ffaf38;
+    --color-smokeWhite: #f0f0f0;
+    --color-passive: #8b8b8b;
+
+    --font-var: 2.8vw;
+    --font-project: 3.5vw;
+    --font-team: 3.5vw;
+    --font-label: 3vw;
+    --font-icon: 3.2vw;
+    --font-value: 3.2vw;
+    --font-section: 5vw;
+    
+    --font-skill: 3vw;
+    --font-curtain: 6vw;
+    --font-footer: 3.5vw; */
+    
+}
+
+* {
+    box-sizing:border-box;
+    font-family: Helvetica, Verdana, sans-serif;
+}
+
+html {
+    -webkit-user-select: none;  /* Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* IE10+ */
+    user-select: none;          /* Standar */
+    overscroll-behavior-y: none;
+}
+
+body {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+    /* overflow: scroll; */
+   
+    color: #000000;
+}
+
+
+/* ================================================================================
+    GAME CURTAIN
+================================================================================ */
+
+#curtain {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    opacity: 1;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url(../images/bgPatternBlue.png);
+    background-repeat: repeat;
+    background-position: center center;
+    background-color: var(--color-infoPanel);
+    z-index: 20;
+    animation: none;
+}
+
+#curtain.close {
+    display: flex;
+    opacity: 0;
+    animation: 1s aniTransitionIn ease-in 0.5s forwards;
+}
+
+@keyframes aniTransitionIn {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#curtain.open {
+    animation: 1s aniTransitionOut ease-out forwards;
+}
+
+@keyframes aniTransitionOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* ================================================================================
+    GAME CURTAIN
+================================================================================ */
+
+#main-wrap {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    padding: 15vw 5vw;
+    background-color: var(--color-background);
+}
+
+#logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    aspect-ratio: 7/3;
+    background-image: url(../images/logo.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.button-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin: auto 0;
+}
+
+.button-wrap button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3vw 5vw;
+    border: none;
+    border-radius: 10vw;
+    font-size: var(--font-button);
+    font-weight: bold;
+    background-color: var(--color-button);
+    box-shadow: inset -2px -2px 3px rgba(0, 0, 0, 0.3), 2px 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+#footnote {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    text-align: center;
+    font-size: var(--font-footnote);
+    line-height: 1;
+    color: var(--color-footnote);
+
+}
+
+

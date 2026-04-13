@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Developer</title>
+
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <link rel="stylesheet" href="../css/gameDev.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+    
+</head>
+<body>
+    <div id="curtain"></div>
+
+    <div id="menu-panel">
+        <div class="panel"><i class="fa-solid fa-calendar-days"></i><span id="eTurn">13</span></div>
+        <div class="panel"><i class="fa-solid fa-coins"></i><span id="eBudget">2350</span></div>
+        <div class="panel"><i class="fa-solid fa-star"></i><span id="eProfit">6/10</span></div>
+        <button id="btnExit"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div id="game-panel">
+        <div class="section">Game Projects</div>
+        <div id="project-panel">
+            <div class="project">
+                <div class="title">The Football Manager</div>
+                <div class="genre">Sport</div>
+                
+                <div class="wrap">
+                    <div class="icon"><i class="fa-solid fa-coins"></i><span>2134</span></div>
+                    <div class="icon"><i class="fa-solid fa-money-bill-trend-up"></i><span>1245</span></div>
+                    <div class="icon"><i class="fa-solid fa-screwdriver-wrench"></i><span>123</span></div>
+                    <div class="icon"><i class="fa-solid fa-user"></i><span>1200</span></div>
+                    <div class="icon"></div>
+                    <div class="icon"><i class="fa-solid fa-heart"></i><span>4/10</span></div>
+                    <div class="text">Tune</div> <div class="text">Profit</div>
+                    <div class="icon"><i class="fa-solid fa-gamepad"></i><span>5/10</span></div>
+                    <div class="icon"><i class="fa-solid fa-user"></i><span>+5</span></div>
+                    <div class="icon"><i class="fa-solid fa-eye"></i><span>5/10</span></div>
+                    <div class="icon"><i class="fa-solid fa-screwdriver-wrench"></i><span class="red">-123</span></div>
+                    <div class="icon"><i class="fa-regular fa-file-lines"></i><span>5/10</span></div>
+                    <div class="icon"><i class="fa-solid fa-money-bill-trend-up"></i><span>+245</span></div>
+                    <div class="icon"><i class="fa-solid fa-tag"></i><span>135</span></div>
+                </div>
+            </div>
+
+            <div class="project">
+                <div class="title">The Rabbit in the Forest</div>
+                <div class="genre">Adventure</div>
+                
+                <div class="wrap">
+                    <div class="icon"><i class="fa-solid fa-coins"></i><span>2134</span></div>
+                    <div class="icon"><i class="fa-solid fa-money-bill-trend-up"></i><span>1245</span></div>
+                    <div class="icon"><i class="fa-solid fa-screwdriver-wrench"></i><span>123</span></div>
+                    <div class="icon"><i class="fa-solid fa-user"></i><span>1200</span></div>
+                    <div class="icon"></div>
+                    <div class="icon"><i class="fa-solid fa-heart"></i><span>4/10</span></div>
+                    <div class="text">Tune</div> <div class="text">Profit</div>
+                    <div class="icon"><i class="fa-solid fa-gamepad"></i><span>5/10</span></div>
+                    <div class="icon"><i class="fa-solid fa-user"></i><span>+5</span></div>
+                    <div class="icon"><i class="fa-solid fa-eye"></i><span>5/10</span></div>
+                    <div class="icon"><i class="fa-solid fa-screwdriver-wrench"></i><span class="red">-123</span></div>
+                    <div class="icon"><i class="fa-regular fa-file-lines"></i><span>5/10</span></div>
+                    <div class="icon"><i class="fa-solid fa-money-bill-trend-up"></i><span>+245</span></div>
+                    <div class="icon"><i class="fa-solid fa-tag"></i><span>135</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">Weekly News</div>
+        <div id="team-panel"></div>
+    </div>
+
+
+    <script src="../js/gameHouse-v1.js"></script>
+
+    <script>
+        const game = new gameHouse({
+
+        });
+
+    </script>
+    
+</body>
+</html>

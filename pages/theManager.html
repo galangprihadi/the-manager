@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Manager</title>
+
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <link rel="stylesheet" href="../css/theManager.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+    
+</head>
+<body>
+    <div id="curtain"><div id="text-curtain">Starting your career...</div></div>
+
+    <div id="game-help">
+        <div class="icon-panel">
+            <div class="title">Game Mission</div>
+            <div class="paragraph" id="the-mission"></div>
+
+            <div class="title">Skills Required for The Project</div>
+            <div class="icon"><i class="fa-brands fa-html5"></i></div>
+            <div class="value">Frontend programmer</div>
+            <div class="icon"><i class="fa-brands fa-html5"></i> <i class="fa-brands fa-square-js"></i></div>
+            <div class="value">Full-stack developer (frontend & backend programmers)</div>
+            <div class="icon"><i class="fa-brands fa-html5"></i> <i class="fa-brands fa-square-js"></i> <i class="fa-brands fa-python"></i></div>
+            <div class="value">Full-stack developer and Data Engineer</div>
+
+            <div class="title">Project Icons</div>
+            <div class="icon"><i class="fa-solid fa-coins"></i></div>
+            <div class="value">Project value</div>
+            <div class="icon"><i class="fa-solid fa-list-check"></i></div>
+            <div class="value">Number of project tasks to be completed</div>
+            <div class="icon"><i class="fa-solid fa-calendar-days"></i></div>
+            <div class="value">Project completion time duration (week)</div>
+            <div class="icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            <div class="value">Project risk (probability of over task)</div>
+
+            <div class="title">Team Icons</div>
+            <div class="icon"><i class="fa-solid fa-coins"></i></div>
+            <div class="value">Team costs (weekly or accumulated)</div>
+            <div class="icon"><i class="fa-solid fa-money-bill-trend-up"></i></i></div>
+            <div class="value">Profit from the project</div>
+
+            <div class="button-wrap">
+                <button id="btnCloseHelp"><i class="fa-solid fa-angles-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-panel">
+        <div class="icon"><i class="fa-solid fa-calendar-days"></i><span id="eTurn">13</span></div>
+        <div class="icon"><i class="fa-solid fa-coins"></i><span id="eMoney">2350</span></div>
+        <div class="icon"><i class="fa-solid fa-money-bill-trend-up"></i><span id="eProfit">1324</span></div>
+        <button class="left" id="btnHelp"><i class="fa-solid fa-question"></i></button>
+        <button class="green" id="btnRun"><i class="fa-solid fa-forward"></i></button>
+    </div>
+
+    <div id="game-panel">
+        <button id="btnExit"><i class="fa-solid fa-xmark"></i></button>
+
+        <div class="section">Projects</div>
+        <div id="project-panel"> </div>
+
+        <div class="section">Teams</div>
+        <div id="team-panel"> </div>
+    </div>
+
+
+    <script src="../js/theManager-v3.js"></script>
+
+    <script>
+        const game = new TheManager({
+            homePage: "../index.html",
+            numOfProject: 8,
+            numOfTeam: 3,
+            maxTurn: 52,
+        });
+    </script>
+    
+</body>
+</html>

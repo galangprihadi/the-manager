@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PCG Project Management Game</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    button { margin: 5px; }
+    .task { margin-bottom: 8px; }
+    .log { font-size: 0.9em; color: #444; }
+  </style>
+</head>
+<body>
+
+<h1>Procedural Project Management Game</h1>
+
+<div id="project"></div>
+<div id="tasks"></div>
+
+<h3>Actions</h3>
+<button onclick="assignWork()">Assign Team to Task</button>
+<button onclick="mitigateRisk()">Mitigate Risk (-10 Budget)</button>
+<button onclick="nextTurn()">Skip Turn</button>
+
+<h3>Game Log</h3>
+<div id="log" class="log"></div>
+
+<script>
+/* ==========================
+   PCG ENGINE
+========================== */
+
+function generateProject(difficulty = "medium") {
+  const difficultyMap = {
+    low: { tasks: [2, 3], effort: [2, 4], risk: 0.15 },
+    medium: { tasks: [3, 4], effort: [3, 6], risk: 0.25 },
+    high: { tasks: [4, 6], effort: [4, 8], risk: 0.35 }
+  };
+
+  const config = difficultyMap[difficulty];
+  const numTasks = rand(config.tasks[0], config.tasks[1]);
+  const tasks = [];
+
+  for (let i = 0; i < numTasks; i++) {
+    tasks.push({
+      id: i + 1,
+      effort: rand(config.effort[0], config.effort[1]),
+      remaining: 0,
+      completed: false
+    });
+  }
+
+  return {
+    difficulty,
+    turn: 1,
+    maxTurns: 8,
+    budget: 60,
+    capacity: 3,
+    risk: config.risk,
+    tasks
+  };
+}
+
+function rand(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/* ==========================
+   GAME STATE
+========================== */
+
+let game = generateProject("medium");
+game.tasks.forEach(t => t.remaining = t.effort);
+const logData = [];
+
+/* ==========================
+   RENDERING
+========================== */
+
+function render() {
+  document.getElementById("project").innerHTML = `
+    <strong>Turn:</strong> ${game.turn} / ${game.maxTurns} |
+    <strong>Budget:</strong> ${game.budget} |
+    <strong>Risk:</strong> ${game.risk.toFixed(2)}
+  `;
+
+  document.getElementById("tasks").innerHTML =
+    "<h3>Tasks</h3>" +
+    game.tasks.map(t => `
+      <div class="task">
+        Task ${t.id} — Remaining Effort: ${t.remaining}
+        ${t.completed ? "✅" : ""}
+      </div>`
+    ).join("");
+
+  document.getElementById("log").innerHTML =
+    logData.map(l => `<div>${l}</div>`).join("");
+}
+
+render();
+
+/* ==========================
+   GAME ACTIONS
+========================== */
+
+function assignWork() {
+  let capacity = game.capacity;
+  for (let t of game.tasks) {
+    if (!t.completed && capacity > 0) {
+      const work = Math.min(capacity, t.remaining);
+      t.remaining -= work;
+      capacity -= work;
+      logData.push(`Turn ${game.turn}: Assigned ${work} work to Task ${t.id}`);
+      if (t.remaining === 0) {
+        t.completed = true;
+        logData.push(`Task ${t.id} completed`);
+      }
+    }
+  }
+  resolveTurn();
+}
+
+function mitigateRisk() {
+  if (game.budget >= 10) {
+    game.budget -= 10;
+    game.risk = Math.max(0, game.risk - 0.1);
+    logData.push(`Turn ${game.turn}: Risk mitigated`);
+  } else {
+    logData.push("Not enough budget to mitigate risk");
+  }
+  resolveTurn();
+}
+
+function nextTurn() {
+  logData.push(`Turn ${game.turn}: No action taken`);
+  resolveTurn();
+}
+
+/* ==========================
+   TURN RESOLUTION
+========================== */
+
+function resolveTurn() {
+  // Random event
+  if (Math.random() < game.risk) {
+    game.budget -= 5;
+    logData.push(`⚠️ Unexpected event! Budget -5`);
+  }
+
+  game.turn++;
+
+  if (game.turn > game.maxTurns || game.budget <= 0) {
+    endGame(false);
+    return;
+  }
+
+  if (game.tasks.every(t => t.completed)) {
+    endGame(true);
+    return;
+  }
+
+  render();
+}
+
+function endGame(win) {
+  logData.push(win ? "✅ Project completed successfully!" : "❌ Project failed.");
+  render();
+  alert(win ? "You won!" : "Game Over");
+}
+
+/* ==========================
+   LOGGING (FOR RESEARCH)
+========================== */
+
+// logData can be exported or analyzed for:
+// - decision sequence
+// - efficiency
+// - difficulty perception
+
+</script>
+</body>
+</html>

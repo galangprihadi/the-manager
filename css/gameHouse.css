@@ -1,0 +1,412 @@
+:root {
+    --color-background: #eeeeee;
+    --color-footerPanel: #2C3E50;
+    --color-gamePanel: #dbdbdb;
+
+    --color-menu: #ECF0F1;
+    --color-project: #88C070;
+    --color-finished: #ee4343;
+    --color-team: #64B5F6;
+
+    --color-red: #ee4343;
+    --color-deepRed: #c02222;
+    --color-green: #2ECC71;
+    --color-orange: #ffaf38;
+    --color-passive: #8b8b8b;
+    --color-smokeWhite: #f0f0f0;
+    --color-gray: #424242;
+
+    --font-var: 3.5vw;
+    --font-value: 3.5vw;
+    --font-section: 5vw;
+    --font-button: 4vw;
+
+
+
+    /* --color-noteA-Active: #ff6e6150;
+
+    --color-infoPanel: #42424258;
+    --color-topbar: #42424258;
+
+    --color-black: #1a1a1a;
+
+    --color-yellow: #FBC02D;
+    
+    
+    --color-gray: #424242;
+    --color-lightYellow: #b29431;
+    --color-navi: #1A237E;
+    --color-darkGray: #323232;
+    --color-smokeWhite: #f0f0f0;
+    --color-lightBlue: #00c4ff;
+    --color-lightPink: #ff8799;
+
+    --color-1: #ff6e61;
+    --color-2: #6b5b95;
+    --color-3: #87af4b;
+    --color-4: #f7cbca;
+    --color-5: #93a9d2; */
+    
+}
+
+* {
+    box-sizing:border-box;
+    /* font-family: Arial, sans-serif; */
+    font-family: Helvetica, Verdana, sans-serif;
+}
+
+html {
+    -webkit-user-select: none;  /* Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* IE10+ */
+    user-select: none;          /* Standar */
+    /* overscroll-behavior-y: none; */
+}
+
+body {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+    /* overflow: scroll; */
+    background-color: var(--color-background);
+}
+
+
+/* ================================================================================
+    GAME TRANSITION
+================================================================================ */
+
+#curtain {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    opacity: 1;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    background-image: url(../images/bgPatternBlue.png);
+    background-repeat: repeat;
+    background-position: center center;
+    z-index: 20;
+    animation: none;
+}
+
+#curtain.close {
+    display: flex;
+    opacity: 0;
+    animation: 1s aniTransitionIn ease-in 0.5s forwards;
+}
+
+@keyframes aniTransitionIn {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#curtain.open {
+    animation: 1s aniTransitionOut ease-out forwards;
+}
+
+@keyframes aniTransitionOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* ================================================================================
+    MENU PANEL
+================================================================================ */
+
+#menu-panel {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 4vw 3vw 2vw 3vw;
+    background-color: var(--color-footerPanel);
+    box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.3), 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#menu-panel .panel {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-width: 20vw;
+    font-size: var(--font-var);
+    color: var(--color-smokeWhite);
+}
+
+#menu-panel .panel span {
+    margin-top: 0.5vw;
+    font-size: var(--font-value);
+    margin-left: 2vw;
+}
+
+#menu-panel button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -1vw;
+    height: 8vw;
+    aspect-ratio: 1/1;
+    border: none;
+    border-radius: 10vw;
+    margin-left: auto;
+    font-size: var(--font-button);
+    background-color: var(--color-red);
+    color: var(--color-smokeWhite);
+    box-shadow: inset -2px -2px 3px rgba(0, 0, 0, 0.3), 2px 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+
+/* ================================================================================
+    GAME PANEL
+================================================================================ */
+
+#game-panel {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 2.5vw 2vw;
+    background-color: var(--color-gamePanel);
+}
+
+#game-panel .section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 3vw;
+    margin-bottom: 1vw;
+    font-size: var(--font-section);
+    font-weight: bold;
+    width: 100%;
+}
+
+#game-panel .section:first-of-type {
+    margin-top: 13vw;
+}
+
+#game-panel button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8vw;
+    aspect-ratio: 1/1;
+    border: none;
+    border-radius: 50%;
+    margin-left: auto;
+    font-size: var(--font-button);
+    font-weight: bold;
+    background-color: var(--color-red);
+    box-shadow: inset -1px -1px 3px rgba(0, 0, 0, 0.3);
+}
+
+
+/* ================================================================================
+    TIMELINE PANEL
+================================================================================ */
+
+#timeline-panel {
+    display: grid;
+    grid-template-columns: 1fr 10fr 2fr;
+    width: 100%;
+    margin-top: 2vw;
+}
+
+#timeline-panel .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 3vw;
+    font-size: var(--font-var);
+    font-weight: bold;
+    border-right: 1px solid var(--color-gray);
+    grid-row: span 2;
+}
+
+#timeline-panel .bar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 1vw 0;
+    background-color: var(--color-orange);
+}
+
+#timeline-panel .bar.active {
+    background-color: var(--color-footerPanel);
+    margin-bottom: 3vw;
+}
+
+#timeline-panel .name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 3vw;
+    font-size: var(--font-value);
+    border-left: 1px solid var(--color-gray);
+    grid-row: span 2;
+}
+
+
+
+
+/* ================================================================================
+    PROJECT PANEL
+================================================================================ */
+
+#project-panel {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2vw;
+    width: 100%;
+}
+
+.project {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding: 2vw 1vw;
+    border-radius: 2vw;
+    font-size: var(--font-value);
+    font-weight: bold;
+    background-color: var(--color-project);
+}
+
+.project.finished {
+    background-color: var(--color-finished);
+}
+
+.project .title {
+    margin-bottom: 1vw;
+}
+
+.project .panel {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    /* flex-direction: column; */
+    margin-top: 1vw;
+    font-size: var(--font-value);
+    font-weight: normal;
+}
+
+.project .panel span {
+    font-size: var(--font-value);
+    /* font-weight: bold; */
+}
+
+.project .panel span.red {
+    color: var(--color-deepRed);
+}
+
+
+/* ================================================================================
+    TEAM PANEL
+================================================================================ */
+
+#team-panel {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2vw;
+    width: 100%;
+}
+
+#team-panel button {
+    height: 80%;
+    padding: 1vw 2vw;
+    border-radius: 2vw;
+    aspect-ratio: unset;
+    font-size: var(--font-var);
+    font-weight: bold;
+    background-color: var(--color-passive);
+    margin: auto;
+}
+
+#team-panel button.active {
+    background-color: var(--color-orange);
+}
+
+#team-panel .col2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    margin-bottom: 1vw;
+}
+
+#team-panel .col3 {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    width: 95%;
+    margin-top: 2vw;
+}
+
+#team-panel .col3 button {
+    padding: 0;
+    height: 80%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    font-size: var(--font-value);
+    background-color: var(--color-orange);
+}
+
+.team {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding: 2vw 1vw;
+    border-radius: 2vw;
+    font-size: var(--font-value);
+    font-weight: bold;
+    background-color: var(--color-team);
+}
+
+.team .panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 1vw;
+    font-size: var(--font-var);
+    font-weight: normal;
+}
+
+.team .panel span {
+    font-size: var(--font-value);
+    font-weight: bold;
+}
+
+.team .panel span.red {
+    color: var(--color-deepRed);
+}
+
+
+
+
