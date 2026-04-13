@@ -145,7 +145,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 70%;
+    width: 70vw;
     aspect-ratio: 7/3;
     background-image: url(../images/logo.png);
     background-repeat: no-repeat;
@@ -172,6 +172,7 @@ body {
     font-size: var(--font-button);
     font-weight: bold;
     background-color: var(--color-button);
+    color: black;
     box-shadow: inset -2px -2px 3px rgba(0, 0, 0, 0.3), 2px 2px 3px rgba(0, 0, 0, 0.5);
 }
 
