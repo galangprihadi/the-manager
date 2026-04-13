@@ -12,6 +12,35 @@ document.addEventListener('contextmenu', function(e) {
 
 class TheManager {
     /* ================================================================================
+        SOUNDS
+    ================================================================================ */
+    sounds = {
+        transition: new Howl({
+            src: "../sounds/transition.mp3",
+        }),
+
+        pop: new Howl({
+            src: "../sounds/pop.mp3",
+        }),
+
+        cling: new Howl({
+            src: "../sounds/cling.mp3",
+        }),
+
+        shake: new Howl({
+            src: "../sounds/shake.mp3",
+        }),
+
+        backsound: new Howl({
+            src: "../sounds/winter-weather.mp3",
+            loop: true,
+            volume: 0.6,
+            autoplay: true,
+        }),
+    }
+
+
+    /* ================================================================================
         WEB ELEMENTS
     ================================================================================ */
 
@@ -48,6 +77,7 @@ class TheManager {
     // ====================================================================================== GAME TRANSITION
     setGameTransition(status){     // status: "open", "close", or "reopen"
         if (status.toLowerCase() == "open") {
+            
             const handler = () => {
                 this.curtain.style.display = "none";
                 this.curtain.classList.remove("open");
@@ -59,9 +89,14 @@ class TheManager {
         }
 
         else if (status.toLowerCase() == "close") {
+
             const handler = () => {
-                window.location.href = this.homePage;
+                setTimeout(() => {
+                    window.location.href = this.homePage;
+                }, 200);
             }
+
+            this.sounds.transition.play();
 
             this.textCurtain.innerHTML = `Good bye...`;
 
@@ -79,10 +114,12 @@ class TheManager {
             }
 
             const handlerClose = () => {
+                this.sounds.transition.play();
+
                 this.curtain.removeAttribute("style");
                 this.curtain.classList.remove("close");
                 this.curtain.removeEventListener("animationend", handlerClose);
-
+                
                 this.updateProjects();
 
                 setTimeout(() => {
@@ -177,6 +214,7 @@ class TheManager {
         `;
 
         setTimeout(() => {
+            this.sounds.transition.play();
             this.setGameTransition("open");
         }, 2000);
     }
@@ -263,10 +301,12 @@ class TheManager {
 
                 if (this.gameConfig.turn < this.gameConfig.maxTurn) {
                     this.eTeams[i].querySelector("#btnMinus").addEventListener("click", () => {
+                        this.sounds.shake.play();
                         this.shiftProject(i, -1);
                     });
 
                     this.eTeams[i].querySelector("#btnPlus").addEventListener("click", () => {
+                        this.sounds.shake.play();
                         this.shiftProject(i, 1);
                     });
                 }
@@ -521,12 +561,16 @@ class TheManager {
     buttonFunctions() {
         // ================================================================================== EXIT GAME
         this.btnExit.addEventListener("click", () => {
+            this.sounds.pop.play();
+
             this.setGameTransition("close");
         });
 
 
         // ================================================================================== OPEN HELP
         this.btnHelp.addEventListener("click", () => {
+            this.sounds.pop.play();
+
             this.helpPanelOpened = false;
             this.gameHelpPanel("close");
         });
@@ -534,6 +578,8 @@ class TheManager {
 
         // ================================================================================== OPEN HELP
         this.btnCloseHelp.addEventListener("click", () => {
+            this.sounds.pop.play();
+
             this.helpPanelOpened = true;
             this.gameHelpPanel("open");
         });
@@ -541,6 +587,8 @@ class TheManager {
 
         // ================================================================================== RUN PLAN
         this.btnRun.addEventListener("click", () => {
+            this.sounds.cling.play();
+
             if (this.gameConfig.turnPossible) {
                 this.gameConfig.turn += 1;
 

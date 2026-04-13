@@ -263,6 +263,7 @@ body {
         align-items: center;
         width: 100%;
         padding: 2vw;
+        margin-top: 1vw;
         margin-bottom: -4vw;
         background-color: transparent;
         z-index: 10;

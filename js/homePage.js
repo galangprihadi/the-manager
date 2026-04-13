@@ -4,11 +4,19 @@ document.addEventListener('contextmenu', function(e) {
 });
 
 class HomePage {
-    /* ================================================================================
-        WEB ELEMENTS
-    ================================================================================ */
-
     
+    /* ================================================================================
+        SOUNDS
+    ================================================================================ */
+    sounds = {
+        transition: new Howl({
+            src: "../sounds/transition.mp3",
+        }),
+
+        pop: new Howl({
+            src: "../sounds/pop.mp3",
+        }),
+    }
 
 
     /* ================================================================================
@@ -18,6 +26,7 @@ class HomePage {
     // ====================================================================================== GAME TRANSITION
     setGameTransition(status, destination){     // status: "open" or "close"
         if (status.toLowerCase() == "open") {
+            
             const handler = () => {
                 this.curtain.style.display = "none";
                 this.curtain.classList.remove("open");
@@ -29,6 +38,9 @@ class HomePage {
         }
 
         else if (status.toLowerCase() == "close") {
+            this.sounds.pop.play();
+            this.sounds.transition.play();
+
             const handler = () => {
                 setTimeout(() => {
                     window.location.href = destination;
@@ -53,8 +65,9 @@ class HomePage {
 
         this.btnPlay = document.querySelector("#btnPlay");
 
-        this.setGameTransition("open");
-
+        setTimeout(() => {
+            this.setGameTransition("open");
+        }, 100);
         
     }
 }
