@@ -56,6 +56,7 @@ html {
     -ms-user-select: none;      /* IE10+ */
     user-select: none;          /* Standar */
     overscroll-behavior-y: none;
+    height: 100%;
 }
 
 body {
@@ -64,6 +65,7 @@ body {
     align-items: center;
     flex-direction: column;
     width: 100%;
+    height: 100%;
     margin: 0;
     /* overflow: scroll; */
    
@@ -86,9 +88,6 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    /* background-image: url(../images/bgPatternBlue.png);
-    background-repeat: repeat;
-    background-position: center center; */
     background-color: var(--color-background);
     z-index: 20;
     animation: none;
@@ -136,8 +135,9 @@ body {
     align-items: center;
     flex-direction: column;
     width: 100%;
-    height: 100vh;
-    padding: 15vw 5vw;
+    height: 100%;
+    padding: 5vw;
+    padding-top: 15vw;
     background-color: var(--color-background);
 }
 
@@ -160,6 +160,7 @@ body {
     flex-direction: column;
     width: 100%;
     margin: auto 0;
+    padding-bottom: 20vw;
 }
 
 .button-wrap button {

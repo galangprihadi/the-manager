@@ -6,6 +6,7 @@
 
     --color-footer: #ECF0F1;
     --color-project: #88C070;
+    --color-information: #ee4343;
     
     --color-curtainText: #000000;
     --color-team: #64B5F6;
@@ -31,6 +32,7 @@
     --font-skill: 3vw;
     --font-curtain: 6vw;
     --font-footer: 3.5vw;
+    --font-information: 3.2vw;
 
 
 
@@ -72,6 +74,7 @@ html {
     -ms-user-select: none;      /* IE10+ */
     user-select: none;          /* Standar */
     overscroll-behavior-y: none;
+    height: 100%;
 }
 
 body {
@@ -164,17 +167,18 @@ body {
 #game-help {
     position: fixed;
     top: 0;
-    bottom: 0;
+    /* bottom: 0; */
     left: 0;
     right: 0;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
+    height: 100vh;
     opacity: 1;
     padding: 5vw;
     background-color: var(--color-infoPanel);
-    z-index: 10;
+    z-index: 15;
     animation: none;
 }
 
@@ -232,7 +236,7 @@ body {
     grid-column: span 2;
     position: absolute;
     left: 0;
-    bottom: 20vw;
+    bottom: 25vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -417,7 +421,7 @@ body {
     padding: 3vw 4vw;
     border-radius: 3vw;
     background-color: var(--color-project);
-    box-shadow: inset -1px -1px 3px rgba(0, 0, 0, 0.3)
+    box-shadow: inset -1px -1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .project.active {
@@ -463,6 +467,32 @@ body {
 .project .red {
     color: var(--color-deepRed);
     font-weight: bold;
+}
+
+
+/* ================================================================================
+    INFORMATION PANEL
+================================================================================ */
+
+#information-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 3vw 4vw;
+    border-radius: 3vw;
+    background-color: var(--color-information);
+    box-shadow: inset -1px -1px 3px rgba(0, 0, 0, 0.3);
+    
+}
+
+#information-panel #text-info {
+    width: 100%;
+    font-size: var(--font-information);
+    color: var(--color-smokeWhite);
+    line-height: 1.1;
+    text-align: left;
+    font-weight: 500;
 }
 
 

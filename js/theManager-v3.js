@@ -62,6 +62,8 @@ class TheManager {
     projectPanel = document.getElementById("project-panel");
     eProjects = [];
 
+    eInfo = document.getElementById("text-info");
+
     teamPanel = document.getElementById("team-panel");
     eTeams = [];
     eSimWeeks = [];
@@ -171,7 +173,9 @@ class TheManager {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    skill(type){
+
+    // ====================================================================================== SKILL ICONS
+    skill(type) {
         if (type == 0) {
             return `<i class="fa-brands fa-html5"></i>`;
         }
@@ -180,6 +184,63 @@ class TheManager {
         }
         else if (type == 2) {
             return `<i class="fa-brands fa-html5"></i> <i class="fa-brands fa-square-js"></i> <i class="fa-brands fa-python"></i>`;
+        }
+    }
+
+
+    // ====================================================================================== INFORMATION TEXT
+    setInfo() {
+        const lastWeeks = this.gameConfig.maxTurn - this.gameConfig.turn;
+
+        if (lastWeeks > 0) {
+            if (this.gameConfig.turn == 0) {
+                this.eInfo.innerHTML = `
+                    Welcome to The Manager. Each week, the project list refreshes with new options. 
+                    Watch each project's value, duration, and risk carefully. To start a project, 
+                    make sure you have enough funds to pay the team cost first. You will earn profit 
+                    once the project is completed.
+                `;
+            }
+            else {
+                let infoText = "";
+                let allWork = true;
+                
+                this.gameConfig.teams.forEach((team) => {
+                    if (team.working == 0) {
+                        allWork = false;
+                    }
+                });
+
+                if (allWork) {
+                    infoText += "All teams are currently working. You cannot start a new project. ";
+                }
+                else {
+                    infoText += "Please check the newly offered projects for this week. ";
+                }
+
+                this.gameConfig.projects.forEach((project, i) => {
+                    if (project.tempOverTask > 0 ) {
+                        infoText += "An over-task occurred in Project " + (i+1) + ". ";
+                    }
+                });
+
+                if (lastWeeks <= 10) {
+                    if (lastWeeks > 1) {
+                        infoText += "You have " + lastWeeks + " weeks remaining to complete the game. ";
+                    }
+                    else {
+                        infoText += "This is the last week.";
+                    }
+                }
+
+                this.eInfo.innerHTML = infoText;
+            }
+        }
+        else {
+            this.eInfo.innerHTML = `
+                Congratulations! You have successfully collected ${this.gameConfig.budget} in total funds 
+                with a project profit of ${this.gameConfig.profit}.
+            `;
         }
     }
 
@@ -264,6 +325,9 @@ class TheManager {
             }
             
         }
+
+        // Info
+        this.setInfo();
 
         // Teams
         for (let i=0; i < this.gameConfig.config.numOfTeam; i++) {
@@ -658,8 +722,7 @@ class TheManager {
         // The button functions
         this.buttonFunctions();
 
-
-
+        Howler.mute(true);
 
 
     }
