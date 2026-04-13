@@ -206,7 +206,7 @@ body {
     margin-top: 1vw;
     text-align: center;
     font-size: var(--font-value);
-    font-weight: 500;
+    font-weight: normal;
 }
 
 #game-help .icon-panel .icon {
@@ -220,7 +220,7 @@ body {
     margin-top: 1vw;
     font-size: var(--font-value);
     line-height: 1;
-    font-weight: 500;
+    font-weight: normal;
 }
 
 #game-help.close {
