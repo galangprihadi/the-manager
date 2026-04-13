@@ -16,6 +16,12 @@ class HomePage {
         pop: new Howl({
             src: "../sounds/pop.mp3",
         }),
+
+        silent: new Howl({
+            src: "../sounds/pop.mp3",
+            volume: 0,
+            autoplay: true,
+        }),
     }
 
 
@@ -66,9 +72,7 @@ class HomePage {
         this.btnPlay = document.querySelector("#btnPlay");
 
         this.btnPlay.addEventListener("click", () => {
-            setTimeout(() => {
-                this.setGameTransition('close', 'pages/theManager.html');
-            }, 100);
+            this.setGameTransition('close', 'pages/theManager.html');
         });
 
         setTimeout(() => {
