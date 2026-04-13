@@ -214,7 +214,7 @@ class TheManager {
                 if (allWork) {
                     infoText += "All teams are currently working. You cannot start a new project. ";
                 }
-                else {
+                else if (lastWeeks >= 3) {
                     infoText += "Please check the newly offered projects for this week. ";
                 }
 
@@ -238,8 +238,10 @@ class TheManager {
         }
         else {
             this.eInfo.innerHTML = `
-                Congratulations! You have successfully collected ${this.gameConfig.budget} in total funds 
-                with a project profit of ${this.gameConfig.profit}.
+                You have successfully collected <span>${this.gameConfig.budget}</span> in 
+                total funds with a project profit of <span>${this.gameConfig.profit}</span>. You have 
+                completed <span>${this.gameConfig.projectDone}</span> projects and finished <span>
+                ${this.gameConfig.taskDone}</span> tasks. Congratulations!
             `;
         }
     }
@@ -521,7 +523,7 @@ class TheManager {
             duration: [3, 8],
             taskPerWeek: [6, 10],
             minValue: [8, 10, 12],
-            maxValue: [10, 12, 14],
+            maxValue: [10, 12, 15],
             riskRatio: [0.1, 0.5],
             overTaskRatio: 0.1,
         }
@@ -577,6 +579,8 @@ class TheManager {
             turnPossible: true,
             projects,
             teams,
+            projectDone: 0,
+            taskDone: 0,
         }
     }
 
@@ -664,7 +668,11 @@ class TheManager {
                         const prob = this.rand(1, 100);
 
                         if (prob <= project.risk) {
-                            project.tempOverTask = project.overTask;
+                            this.gameConfig.teams.forEach((team) => {
+                                if (team.pos == i && team.working > 0) {
+                                    project.tempOverTask = project.overTask;
+                                }
+                            });
                         }
                     }
                 }
@@ -685,9 +693,12 @@ class TheManager {
 
                     if (team.salary > 0 && team.working == 0) {
                         this.gameConfig.projects[team.pos].active = false;
+                        this.gameConfig.taskDone += this.gameConfig.projects[team.pos].task;
 
                         this.gameConfig.budget += this.gameConfig.projects[team.pos].value;
                         this.gameConfig.profit += team.profit;
+                        this.gameConfig.projectDone += 1;
+                        
                         team.pos = -1;
                         team.duration = 0;
                         team.salary = 0;
@@ -722,7 +733,7 @@ class TheManager {
         // The button functions
         this.buttonFunctions();
 
-        Howler.mute(true);
+        // Howler.mute(true);
 
 
     }

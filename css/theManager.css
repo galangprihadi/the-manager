@@ -491,8 +491,12 @@ body {
     font-size: var(--font-information);
     color: var(--color-smokeWhite);
     line-height: 1.1;
-    text-align: left;
+    text-align: center;
     font-weight: 500;
+}
+
+#information-panel #text-info span {
+    font-weight: bold;
 }
 
 
