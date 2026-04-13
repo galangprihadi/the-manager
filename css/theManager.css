@@ -1,5 +1,5 @@
 :root {
-    --color-background: #eeeeee;
+    --color-background: #dbdbdb;
     --color-footerPanel: #2C3E50;
     --color-gamePanel: #dbdbdb;
     --color-infoPanel: #dbdbdb;
@@ -102,9 +102,9 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-image: url(../images/bgPatternBlue.png);
+    /* background-image: url(../images/bgPatternBlue.png);
     background-repeat: repeat;
-    background-position: center center;
+    background-position: center center; */
     background-color: var(--color-infoPanel);
     z-index: 20;
     animation: none;
@@ -253,6 +253,36 @@ body {
     box-shadow: inset -2px -2px 3px rgba(0, 0, 0, 0.3), 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
+
+/* ================================================================================
+    MENU PANEL
+================================================================================ */
+    #menu-panel {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100%;
+        padding: 2vw;
+        margin-bottom: -4vw;
+        background-color: transparent;
+        z-index: 10;
+    }
+
+    #menu-panel button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 8vw;
+        aspect-ratio: 1/1;
+        border: none;
+        border-radius: 10vw;
+        margin-left: auto;
+        margin-right: 1vw;
+        font-size: var(--font-button);
+        background-color: var(--color-red);
+        color: var(--color-smokeWhite);
+        box-shadow: inset -2px -2px 3px rgba(0, 0, 0, 0.3), 2px 2px 3px rgba(0, 0, 0, 0.3);
+    }
 
 /* ================================================================================
     FOOTER PANEL

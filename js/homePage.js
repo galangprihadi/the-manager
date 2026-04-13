@@ -53,9 +53,8 @@ class HomePage {
 
         this.btnPlay = document.querySelector("#btnPlay");
 
-
-
-
         this.setGameTransition("open");
+
+        
     }
 }

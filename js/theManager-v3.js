@@ -60,9 +60,7 @@ class TheManager {
 
         else if (status.toLowerCase() == "close") {
             const handler = () => {
-                setTimeout(() => {
-                    window.location.href = this.homePage;
-                }, 200);
+                window.location.href = this.homePage;
             }
 
             this.textCurtain.innerHTML = `Good bye...`;
@@ -264,11 +262,11 @@ class TheManager {
                 this.eTeamPos[i] = this.eTeams[i].querySelector("#teamPos");
 
                 if (this.gameConfig.turn < this.gameConfig.maxTurn) {
-                    this.eTeams[i].querySelector("#btnMinus").addEventListener("touchstart", () => {
+                    this.eTeams[i].querySelector("#btnMinus").addEventListener("click", () => {
                         this.shiftProject(i, -1);
                     });
 
-                    this.eTeams[i].querySelector("#btnPlus").addEventListener("touchstart", () => {
+                    this.eTeams[i].querySelector("#btnPlus").addEventListener("click", () => {
                         this.shiftProject(i, 1);
                     });
                 }
@@ -522,27 +520,27 @@ class TheManager {
 
     buttonFunctions() {
         // ================================================================================== EXIT GAME
-        this.btnExit.addEventListener("touchstart", () => {
+        this.btnExit.addEventListener("click", () => {
             this.setGameTransition("close");
         });
 
 
         // ================================================================================== OPEN HELP
-        this.btnHelp.addEventListener("touchstart", () => {
+        this.btnHelp.addEventListener("click", () => {
             this.helpPanelOpened = false;
             this.gameHelpPanel("close");
         });
 
 
         // ================================================================================== OPEN HELP
-        this.btnCloseHelp.addEventListener("touchstart", () => {
+        this.btnCloseHelp.addEventListener("click", () => {
             this.helpPanelOpened = true;
             this.gameHelpPanel("open");
         });
 
 
         // ================================================================================== RUN PLAN
-        this.btnRun.addEventListener("touchstart", () => {
+        this.btnRun.addEventListener("click", () => {
             if (this.gameConfig.turnPossible) {
                 this.gameConfig.turn += 1;
 

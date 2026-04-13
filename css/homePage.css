@@ -86,10 +86,10 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-image: url(../images/bgPatternBlue.png);
+    /* background-image: url(../images/bgPatternBlue.png);
     background-repeat: repeat;
-    background-position: center center;
-    background-color: var(--color-infoPanel);
+    background-position: center center; */
+    background-color: var(--color-background);
     z-index: 20;
     animation: none;
 }
