@@ -16,12 +16,6 @@ class HomePage {
         pop: new Howl({
             src: "../sounds/pop.mp3",
         }),
-
-        silent: new Howl({
-            src: "../sounds/pop.mp3",
-            volume: 0,
-            autoplay: true,
-        }),
     }
 
 
@@ -68,12 +62,12 @@ class HomePage {
 
         // ================================================================================== WEB ELEMENTS
         this.curtain = document.querySelector("#curtain");
-
         this.btnPlay = document.querySelector("#btnPlay");
 
+        this.sounds.transition.play();
+
         this.btnPlay.addEventListener("click", () => {
-            this.sounds.pop.play();
-            // this.setGameTransition('close', 'pages/theManager.html');
+            this.setGameTransition('close', 'pages/theManager.html');
         });
 
         setTimeout(() => {
