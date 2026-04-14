@@ -113,6 +113,18 @@ body {
     animation: none;
 }
 
+#curtain #team-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    aspect-ratio: 1/1;
+    background-image: url(../images/working.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
 #curtain #text-curtain {
     width: 70%;
     padding-bottom: 30vw;

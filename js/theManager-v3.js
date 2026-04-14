@@ -127,7 +127,6 @@ class TheManager {
             this.gameConfig.projects.forEach((project, i) => {
                 if (project.tempOverTask > 0 ) {
                     overTaskFound = true;
-                    infoText += `<br>Check ${i+1}..! `;
                 }
             });
 
@@ -136,7 +135,7 @@ class TheManager {
             }
 
             if (lastWeeks <= 10) {
-                if (lastWeeks > 1) {
+                if (lastWeeks >= 1) {
                     infoText += "<br><br>You have " + lastWeeks + " weeks remaining to complete the game. ";
                 }
                 else {
@@ -261,6 +260,9 @@ class TheManager {
                 }
                 else if (lastWeeks >= 3) {
                     infoText += "There are several new projects being offered, one of them might interest you!";
+                }
+                else {
+                    infoText += "There are no projects with a duration under 3 weeks.";
                 }
 
                 this.gameConfig.projects.forEach((project, i) => {
@@ -421,7 +423,7 @@ class TheManager {
                     this.eTeams[i].innerHTML = `
                         <div class="title">Team ${i+1}</div>
                         <div class="skill">${this.skill(team.type)}</div>
-                        <div class="icon"><i class="fa-solid fa-calendar-days"></i></div> <div class="value">${team.working}</div>
+                        <div class="icon"><i class="fa-solid fa-calendar-days"></i></div> <div class="value">${team.working} weeks left</div>
                         <div class="icon"><i class="fa-solid fa-wallet"></i></div> <div class="value">${team.salary}</div>
                         <div class="icon"><i class="fa-solid fa-money-bill-trend-up"></i></div> <div class="value">${team.profit} (${Math.round(team.profit / team.duration)}/w)</div>
                         <div class="label">Working on<br>Project ${team.pos + 1}</div>
@@ -435,7 +437,7 @@ class TheManager {
                     this.eTeams[i].innerHTML = `
                         <div class="title">Team ${i+1}</div>
                         <div class="skill">${this.skill(team.type)}</div>
-                        <div class="icon"><i class="fa-solid fa-calendar-days"></i></div> <div class="value">${team.working}</div>
+                        <div class="icon"><i class="fa-solid fa-calendar-days"></i></div> <div class="value">${team.working} weeks left</div>
                         <div class="icon red"><i class="fa-solid fa-wallet"></i></div> <div class="value red">${team.salary}</div>
                         <div class="icon red"><i class="fa-solid fa-money-bill-trend-up"></i></div> <div class="value red">${team.profit} (${Math.round(team.profit / team.duration)}/w)</div>
                         <div class="label">Working on<br>Project ${team.pos + 1}</div>
@@ -687,6 +689,7 @@ class TheManager {
                 this.btnMute.style.visibility = "visible";
             }, 200);
         });
+
 
         // ================================================================================== CURTAIN
         this.btnCurtain.addEventListener("click", () => {
