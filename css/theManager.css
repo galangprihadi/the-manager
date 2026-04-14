@@ -30,7 +30,7 @@
     --font-section: 5vw;
     --font-button: 3.5vw;
     --font-skill: 3vw;
-    --font-curtain: 6vw;
+    --font-curtain: 4vw;
     --font-footer: 3.5vw;
     --font-information: 3.2vw;
 
@@ -114,12 +114,37 @@ body {
 }
 
 #curtain #text-curtain {
-    width: 80%;
+    width: 70%;
     padding-bottom: 30vw;
     text-align: center;
     font-size: var(--font-curtain);
     font-weight: bold;
     color: var(--color-curtainText);
+}
+
+#curtain .button-wrap {
+    grid-column: span 2;
+    position: absolute;
+    left: 0;
+    bottom: 25vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    column-gap: 5vw;
+}
+
+#curtain button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3vw 5vw;
+    border: none;
+    border-radius: 10vw;
+    font-size: var(--font-button);
+    font-weight: bold;
+    background-color: var(--color-green);
+    box-shadow: inset -2px -2px 3px rgba(0, 0, 0, 0.3), 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 #curtain.close {
@@ -131,15 +156,12 @@ body {
 @keyframes aniTransitionIn {
     0% {
         opacity: 0;
-        /* scale: 2; */
     }
     50% {
         opacity: 1;
-        /* scale: 1; */
     }
     100% {
         opacity: 1;
-        /* scale: 1; */
     }
 }
 
@@ -150,12 +172,10 @@ body {
 @keyframes aniTransitionOut {
     0% {
         opacity: 1;
-        /* scale: 1; */
     }
 
     100% {
         opacity: 0;
-        /* scale: 2; */
     }
 }
 
@@ -264,10 +284,10 @@ body {
 ================================================================================ */
     #menu-panel {
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-start;
         align-items: center;
         width: 100%;
-        padding: 2vw;
+        padding: 2vw 3vw;
         margin-top: 1vw;
         margin-bottom: -4vw;
         background-color: transparent;
@@ -282,13 +302,17 @@ body {
         aspect-ratio: 1/1;
         border: none;
         border-radius: 10vw;
-        margin-left: auto;
-        margin-right: 1vw;
         font-size: var(--font-button);
         font-weight: bold;
-        background-color: var(--color-red);
+        background-color: var(--color-footerPanel);
         color: var(--color-smokeWhite);
         box-shadow: inset -2px -2px 3px rgba(0, 0, 0, 0.3), 2px 2px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    #menu-panel button#btnExit {
+        background-color: var(--color-red);
+        color: var(--color-smokeWhite);
+        margin-left: auto;
     }
 
 /* ================================================================================

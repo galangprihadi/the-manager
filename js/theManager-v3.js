@@ -34,7 +34,7 @@ class TheManager {
         backsound: new Howl({
             src: "../sounds/winter-weather.mp3",
             loop: true,
-            volume: 0.6,
+            volume: 0.5,
             autoplay: true,
         }),
     }
@@ -55,6 +55,8 @@ class TheManager {
     eProfit = document.getElementById("eProfit");
 
     btnExit = document.getElementById("btnExit");
+    btnMute = document.getElementById("btnMute");
+    btnCurtain = document.getElementById("btnCurtain");
     btnHelp = document.getElementById("btnHelp");
     btnCloseHelp = document.getElementById("btnCloseHelp");
     btnRun = document.getElementById("btnRun");
@@ -77,7 +79,7 @@ class TheManager {
     ================================================================================ */
     
     // ====================================================================================== GAME TRANSITION
-    setGameTransition(status){     // status: "open", "close", or "reopen"
+    setGameTransition(status){     // status: "open", "close", "nextweek", or "reopen"
         if (status.toLowerCase() == "open") {
             
             const handler = () => {
@@ -86,6 +88,7 @@ class TheManager {
                 this.curtain.removeEventListener("animationend", handler);
             }
 
+            this.btnCurtain.style.visibility = "hidden";
             this.curtain.classList.add("open");
             this.curtain.addEventListener("animationend", handler);
         }
@@ -101,6 +104,47 @@ class TheManager {
             this.sounds.transition.play();
 
             this.textCurtain.innerHTML = `Good bye...`;
+
+            this.curtain.removeAttribute("style");
+            this.curtain.classList.add("close");
+            this.curtain.addEventListener("animationend", handler);
+        }
+
+        else if (status.toLowerCase() == "nextweek") {
+            
+            const handler = () => {
+                this.updateProjects();
+                this.btnCurtain.style.visibility = "visible";
+                this.curtain.removeEventListener("animationend", handler);
+            }
+
+            this.sounds.transition.play();
+
+            let infoText = `Week ${this.gameConfig.turn} is underway...`;
+            let overTaskFound = false;
+            const lastWeeks = this.gameConfig.maxTurn - this.gameConfig.turn;
+
+            this.gameConfig.projects.forEach((project, i) => {
+                if (project.tempOverTask > 0 ) {
+                    overTaskFound = true;
+                    infoText += `<br>Check ${i+1}..! `;
+                }
+            });
+
+            if (overTaskFound) {
+                infoText += "<br><br>An over task event has occurred in your projects. Take a look!"
+            }
+
+            if (lastWeeks <= 10) {
+                if (lastWeeks > 1) {
+                    infoText += "<br><br>You have " + lastWeeks + " weeks remaining to complete the game. ";
+                }
+                else {
+                    infoText += "<br><br>This is the last week.";
+                }
+            }
+
+            this.textCurtain.innerHTML = infoText;
 
             this.curtain.removeAttribute("style");
             this.curtain.classList.add("close");
@@ -153,12 +197,13 @@ class TheManager {
                 this.gameHelp.removeEventListener("animationend", handler);
             }
 
+            this.btnCloseHelp.style.visibility = "hidden";
             this.gameHelp.classList.add("open");
             this.gameHelp.addEventListener("animationend", handler);
         }
         else if (status.toLowerCase() == "close") {
             const handler = () => {
-                
+                this.btnCloseHelp.style.visibility = "visible";
             }
 
             this.gameHelp.removeAttribute("style");
@@ -215,7 +260,7 @@ class TheManager {
                     infoText += "All teams are currently working. You cannot start a new project. ";
                 }
                 else if (lastWeeks >= 3) {
-                    infoText += "Please check the newly offered projects for this week. ";
+                    infoText += "There are several new projects being offered, one of them might interest you!";
                 }
 
                 this.gameConfig.projects.forEach((project, i) => {
@@ -223,15 +268,6 @@ class TheManager {
                         infoText += "An over-task occurred in Project " + (i+1) + ". ";
                     }
                 });
-
-                if (lastWeeks <= 10) {
-                    if (lastWeeks > 1) {
-                        infoText += "You have " + lastWeeks + " weeks remaining to complete the game. ";
-                    }
-                    else {
-                        infoText += "This is the last week.";
-                    }
-                }
 
                 this.eInfo.innerHTML = infoText;
             }
@@ -276,10 +312,6 @@ class TheManager {
             to complete this mission.<br>Enjoy the game!
         `;
 
-        setTimeout(() => {
-            this.sounds.transition.play();
-            this.setGameTransition("open");
-        }, 2000);
     }
 
 
@@ -634,21 +666,48 @@ class TheManager {
             this.setGameTransition("close");
         });
 
+        // ================================================================================== MUTE SOUND
+        this.btnMute.addEventListener("click", () => {
+            this.sounds.pop.play();
+            
+            this.soundMute = !this.soundMute;
+
+            if (this.soundMute) {
+                Howler.mute(true);
+                this.btnMute.innerHTML = `<i class="fa-solid fa-volume-high"></i>`;
+            }
+            else {
+                Howler.mute(false);
+                this.btnMute.innerHTML = `<i class="fa-solid fa-volume-xmark"></i>`;
+            }
+
+            this.btnMute.style.visibility = "hidden";
+
+            setTimeout(() => {
+                this.btnMute.style.visibility = "visible";
+            }, 200);
+        });
+
+        // ================================================================================== CURTAIN
+        this.btnCurtain.addEventListener("click", () => {
+            this.sounds.pop.play();
+
+            this.setGameTransition("open");
+        });
+
 
         // ================================================================================== OPEN HELP
         this.btnHelp.addEventListener("click", () => {
             this.sounds.pop.play();
 
-            this.helpPanelOpened = false;
             this.gameHelpPanel("close");
         });
 
 
-        // ================================================================================== OPEN HELP
+        // ================================================================================== CLOSE HELP
         this.btnCloseHelp.addEventListener("click", () => {
             this.sounds.pop.play();
 
-            this.helpPanelOpened = true;
             this.gameHelpPanel("open");
         });
 
@@ -656,6 +715,12 @@ class TheManager {
         // ================================================================================== RUN PLAN
         this.btnRun.addEventListener("click", () => {
             this.sounds.cling.play();
+
+            this.btnRun.style.visibility = "hidden";
+
+            setTimeout(() => {
+                this.btnRun.style.visibility = "visible";
+            }, 1000);
 
             if (this.gameConfig.turnPossible) {
                 this.gameConfig.turn += 1;
@@ -669,7 +734,7 @@ class TheManager {
 
                         if (prob <= project.risk) {
                             this.gameConfig.teams.forEach((team) => {
-                                if (team.pos == i && team.working > 0) {
+                                if (team.pos == i && team.working > 1) {
                                     project.tempOverTask = project.overTask;
                                 }
                             });
@@ -706,7 +771,7 @@ class TheManager {
                     }
                 }
 
-                this.setGameTransition("reopen");
+                this.setGameTransition("nextweek");
             }
         });
     }
@@ -722,7 +787,7 @@ class TheManager {
         this.numOfTeam = param.numOfTeam || 3;
         this.maxTurn = param.maxTurn || 52;
 
-        this.helpPanelOpened = false;
+        this.soundMute = false;
 
         // Generate game configuration
         this.gameConfig = this.generateGameContent();
