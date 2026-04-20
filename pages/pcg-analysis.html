@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCG Analysis</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2vw;
+            background-color: #d3d3d3;
+        }
+
+        #main-panel {
+            padding: 1vw;
+            border: 1px solid gray;
+        }
+  </style>
+
+</head>
+<body>
+    <div id="main-panel"></div>
+
+    <script>
+        const panel = document.getElementById("main-panel");
+
+        function rand(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function generateProject(numOfProject) {       
+            const projects = [];
+
+            const config = {
+                numOfProject: numOfProject,
+                duration: [3, 8],
+                taskPerWeek: [6, 10],
+                minValue: [8, 10, 12],
+                maxValue: [10, 12, 15],
+                riskRatio: [0.1, 0.5],
+                overTaskRatio: 0.1,
+            }
+
+            // Project generation
+            for (let i=0; i < config.numOfProject; i++) {
+                const type = rand(0, 2);
+                const duration = rand(config.duration[0], config.duration[1]);
+                const taskPerWeek = rand(config.taskPerWeek[0], config.taskPerWeek[1]);
+                const task = duration * taskPerWeek;
+                const valuePerTask = rand(config.minValue[type], config.maxValue[type]);
+                const value = task * valuePerTask;
+                const valuePerWeek = value / duration;
+                const risk = Math.round((valuePerWeek * config.riskRatio[0]) + (duration * config.riskRatio[1]));
+                const overTask = Math.round(task * config.overTaskRatio);
+
+                projects[i] = {
+                    type: type,
+                    value: value,
+                    task: task,
+                    duration: duration,
+                    risk: risk,
+                    overTask: overTask,
+                    tempOverTask: 0,
+                    active: false,
+                    taskPerWeek: taskPerWeek,
+                    valuePerWeek: valuePerWeek,
+                    valuePerTask: valuePerTask,
+                }
+            }
+
+            return projects;
+        }
+
+        document.addEventListener("keydown", (event) => {
+
+            if (event.code === "KeyG") {
+                const projects = generateProject(416);
+                let teks = "";
+
+                projects.forEach((project) => {
+                    teks += `${project.type + 1}-${project.value}-${project.task}-${project.duration}-${project.risk}-${project.overTask}<br>`;
+                });
+
+                panel.innerHTML = "type-value-task-duration-risk-overtask<br>";
+                panel.innerHTML += teks;
+            }
+        });
+
+
+
+
+    </script>
+</body>
+</html>
